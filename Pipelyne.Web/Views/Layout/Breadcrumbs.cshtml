@@ -1,0 +1,16 @@
+﻿@model IList<Link>
+
+@if (this.Model != null && this.Model.Count > 0)
+{
+	<ol class="breadcrumb">
+		<li><a href="/"><span class="fa fa-home"></span></a></li>
+		@foreach (var link in this.Model)
+		{
+			<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+				<a href="@link.Url" itemprop="url">
+					<span itemprop="title">@Html.Raw(link.Anchor)</span>
+				</a>
+			</li>
+		}
+	</ol>
+}

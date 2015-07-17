@@ -1,0 +1,53 @@
+﻿@model Pipelyne.Core.Pipelyne
+@{
+	StrongViewBag.LayoutDetails = new LayoutDetails
+	{
+		Title = "Home",
+		CurrentTopMenu = LayoutDetails.TopMenu.Home,
+		Breadcrumbs = new List<Link>
+		{
+			new Link("Home", Url.Action(MVC.Home.Index()))
+		}
+	};
+}
+
+<h2>Pipelyne</h2>
+
+<h3>URL format</h3>
+
+~/api/file/get?
+<strong>source</strong>=<span class="label label-info">store-of-your-choosing</span>&
+<strong>id</strong>=<span class="label label-info">item-inside-the-store</span>&
+<strong>to</strong>=<span class="label label-info">comma-delimitted-list-of-transformers</span>
+
+<h3>Examples</h3>
+<ul>
+	<li>
+		<a href="/api/file/get?source=url&id=https://raw.githubusercontent.com/Knagis/CommonMark.NET/master/README.md&to=md-html,webpage">
+			~/api/file/get?source=url&id=https://raw.githubusercontent.com/Knagis/CommonMark.NET/master/README.md&to=md-html,webpage
+		</a>
+	</li>
+	<li>
+		<a href="/api/file/get?source=url&id=https://raw.githubusercontent.com/Knagis/CommonMark.NET/master/README.md&to=text">
+			~/api/file/get?source=url&id=https://raw.githubusercontent.com/Knagis/CommonMark.NET/master/README.md&to=text
+		</a>
+	</li>
+</ul>
+
+<h3>Implemented stores</h3>
+
+<ul>
+	@foreach (var store in Model.Stores)
+	{
+		<li>@store.Name</li>
+	}
+</ul>
+
+<h3>Implemented transformers</h3>
+
+<ul>
+	@foreach (var transformer in Model.Transformers)
+	{
+		<li>@transformer.Name</li>
+	}
+</ul>

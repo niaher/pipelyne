@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pipelyne.Core", "Pipelyne.Core\Pipelyne.Core.csproj", "{0660171E-C331-4563-94EB-87CDB6C05833}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pipelyne.Web", "Pipelyne.Web\Pipelyne.Web.csproj", "{F701D319-E53D-4903-9920-A1D4E1F8D978}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D4BD5904-75AA-4D17-B6B9-BC45FCE5C771}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pipelyne.Controllers", "Pipelyne.Controllers\Pipelyne.Controllers.csproj", "{0CB709A2-358A-4933-9779-1D18D8EB4826}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{95D8F151-EDF2-42A4-8EDA-EF837685D80E}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0660171E-C331-4563-94EB-87CDB6C05833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0660171E-C331-4563-94EB-87CDB6C05833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0660171E-C331-4563-94EB-87CDB6C05833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0660171E-C331-4563-94EB-87CDB6C05833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F701D319-E53D-4903-9920-A1D4E1F8D978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F701D319-E53D-4903-9920-A1D4E1F8D978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F701D319-E53D-4903-9920-A1D4E1F8D978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F701D319-E53D-4903-9920-A1D4E1F8D978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CB709A2-358A-4933-9779-1D18D8EB4826}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CB709A2-358A-4933-9779-1D18D8EB4826}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CB709A2-358A-4933-9779-1D18D8EB4826}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CB709A2-358A-4933-9779-1D18D8EB4826}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

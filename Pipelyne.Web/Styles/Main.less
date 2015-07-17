@@ -1,0 +1,74 @@
+﻿@import "Bootstrap/less/variables.less";
+@import "Bootstrap/less/mixins.less";
+
+/***************************************************************************
+Layout & Master Styling
+***************************************************************************/
+body {padding-top:51px}
+
+header .login {line-height:49px; text-align:right; font-size:0.85em}
+
+footer {
+	text-align:center; padding:20px 0;
+	a {color:#71A1CC; font-size:small}
+	a:hover {color:lighten(#71A1CC,10%)}
+}
+
+/***************************************************************************
+Utilities
+***************************************************************************/
+.width(@count, @step) when (@count > 0) {
+	.width(@count - 1, @step);
+	@width: @count * @step;
+	.width-@{width} {width:(unit(@width, px))}
+}
+
+.width(10, 20);
+
+@vertical-margin:20px;
+.margin-bottom {margin-bottom:@vertical-margin}
+.margin-top {margin-top:@vertical-margin}
+.no-vertical-margins {margin:0}
+.no-top-margin {margin-top:0 !important}
+
+.text-shadow(@color, @x, @y) {
+	filter:DropShadow(Color=@color, OffX=@x, OffY=@y);
+	text-shadow:unit(-@x, px) 0 @color, 0 unit(@y, px) @color, unit(@x, px) 0 @color, 0 unit(-@y, px) @color;
+}
+
+.text-shadow-none() {
+	filter:none;
+	text-shadow:none;
+}
+
+.background-gradient(@start, @end) {
+	background: @start;
+	background: -moz-linear-gradient(@start, @end);
+	background: -webkit-linear-gradient(@start, @end);
+	background: -o-linear-gradient(@start, @end);
+	background: -ms-linear-gradient(@start, @end);/*For IE10*/
+	background: linear-gradient(@start, @end);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@{start}', endColorstr='@{end}', GradientType=0); /*For IE7-8-9*/
+	height: 1%;/*For IE7*/
+}
+
+.clickable {cursor:pointer}
+
+[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-animate){display:none !important;}
+ng\:form{display:block;}
+
+.list-separator {list-style:none; margin:18px 0}
+
+/***************************************************************************
+Tweaking Bootstrap
+***************************************************************************/
+
+/*--------------------------------------------------------------------------
+Reusable control
+--------------------------------------------------------------------------*/
+.my-control {}
+
+/*==========================================================================
+Page
+==========================================================================*/
+.p1 {}
