@@ -12,9 +12,11 @@
 		public Pipelyne()
 		{
 			this.RegisterStore(new UrlStore());
+			this.RegisterStore(new DatabaseStore());
 			this.RegisterTransformer(new TextTransformer());
 			this.RegisterTransformer(new MarkdownTransformer());
 			this.RegisterTransformer(new WebpageTransformer());
+			this.RegisterTransformer(new CodeTransformer());
 		}
 
 		public IEnumerable<ITransformer> Transformers
@@ -83,6 +85,11 @@
 		/// <exception cref="ArgumentException">Thrown if any of the transformers specified in the parameter cannot be found.</exception>
 		public IList<ITransformer> GetTransforms(string to)
 		{
+			if (string.IsNullOrWhiteSpace(to))
+			{
+				return new List<ITransformer>();
+			}
+
 			var names = to.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 
 			var result = new List<ITransformer>(names.Length);

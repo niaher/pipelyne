@@ -35,7 +35,12 @@
     <Reference Include="CommonMark">
       <HintPath>..\packages\CommonMark.NET.0.9.1\lib\net45\CommonMark.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,16 +49,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Transformers\CodeTransformer.cs" />
     <Compile Include="ContentItem.cs" />
+    <Compile Include="Transformers\DatabaseStore.cs" />
     <Compile Include="Stores\IStore.cs" />
-    <Compile Include="Transforms\ITransformer.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Transformers\ITransformer.cs" />
     <Compile Include="Pipelyne.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Exceptions\StoreItemNotFoundException.cs" />
-    <Compile Include="Transforms\MarkdownTransformer.cs" />
-    <Compile Include="Transforms\TextTransformer.cs" />
+    <Compile Include="Transformers\MarkdownTransformer.cs" />
+    <Compile Include="Transformers\TextTransformer.cs" />
     <Compile Include="Stores\UrlStore.cs" />
-    <Compile Include="Transforms\WebpageTransformer.cs" />
+    <Compile Include="Transformers\WebpageTransformer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
