@@ -23,7 +23,7 @@
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css' rel='stylesheet'>
   </head>
   <body>
-    <div class='container'>" + input + @"</div>
+    <div class='container' style='margin-top:25px; margin-bottom:25px'>" + input + @"</div>
   </body>
 </html>";
 			return new ContentItem(html, "text/html");

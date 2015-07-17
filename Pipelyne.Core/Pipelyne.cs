@@ -17,6 +17,7 @@
 			this.RegisterTransformer(new MarkdownTransformer());
 			this.RegisterTransformer(new WebpageTransformer());
 			this.RegisterTransformer(new CodeTransformer());
+			this.RegisterTransformer(new TableTransformer());
 		}
 
 		public IEnumerable<ITransformer> Transformers
