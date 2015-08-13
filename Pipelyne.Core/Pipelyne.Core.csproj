@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="Transformers\CodeTransformer.cs" />
     <Compile Include="ContentItem.cs" />
-    <Compile Include="Transformers\DatabaseStore.cs" />
+    <Compile Include="Stores\DatabaseStore.cs" />
     <Compile Include="Stores\IStore.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Transformers\ITransformer.cs" />
