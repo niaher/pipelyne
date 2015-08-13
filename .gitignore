@@ -191,3 +191,4 @@ ModelManifest.xml
 
 *.css.map
 *.js.map
+.vs/
