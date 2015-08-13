@@ -2,13 +2,7 @@ namespace Pipelyne.Core
 {
 	public class MarkdownTransformer : ITransformer
 	{
-		public string Name
-		{
-			get
-			{
-				return "md-html";
-			}
-		}
+		public string Name => "md-html";
 
 		public ContentItem Transform(string input)
 		{

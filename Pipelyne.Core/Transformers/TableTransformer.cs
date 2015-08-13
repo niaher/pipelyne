@@ -2,13 +2,7 @@
 {
 	internal class TableTransformer : ITransformer
 	{
-		public string Name
-		{
-			get
-			{
-				return "table";
-			}
-		}
+		public string Name => "table";
 
 		public ContentItem Transform(string input)
 		{

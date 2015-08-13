@@ -2,13 +2,7 @@
 {
 	public class WebpageTransformer : ITransformer
 	{
-		public string Name
-		{
-			get
-			{
-				return "webpage";
-			}
-		}
+		public string Name => "webpage";
 
 		public ContentItem Transform(string input)
 		{

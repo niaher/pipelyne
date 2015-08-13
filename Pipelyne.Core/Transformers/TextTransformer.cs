@@ -2,13 +2,7 @@
 {
 	public class TextTransformer : ITransformer
 	{
-		public string Name
-		{
-			get
-			{
-				return "text";
-			}
-		}
+		public string Name => "text";
 
 		public ContentItem Transform(string input)
 		{
