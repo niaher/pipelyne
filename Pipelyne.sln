@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pipelyne.Core", "Pipelyne.Core\Pipelyne.Core.csproj", "{0660171E-C331-4563-94EB-87CDB6C05833}"
 EndProject
@@ -21,6 +21,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		LICENSE = LICENSE
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NugetMaker", "NugetMaker", "{2A4438D0-EF95-4C67-AD6C-4126F40A55D9}"
+	ProjectSection(SolutionItems) = preProject
+		packages\NugetMaker.0.0.3\..\..\\NugetMaker.json = packages\NugetMaker.0.0.3\..\..\\NugetMaker.json
 	EndProjectSection
 EndProject
 Global
