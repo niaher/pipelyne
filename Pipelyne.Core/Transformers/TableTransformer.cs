@@ -4,7 +4,7 @@
 	{
 		public string Name => "table";
 
-		public ContentItem Transform(string input)
+		public ContentItem Transform(string input, TransformationRequest request)
 		{
 			string html = @"
 <link href='//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css' rel='stylesheet' />

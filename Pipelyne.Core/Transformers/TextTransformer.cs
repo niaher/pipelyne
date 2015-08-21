@@ -4,7 +4,7 @@
 	{
 		public string Name => "text";
 
-		public ContentItem Transform(string input)
+		public ContentItem Transform(string input, TransformationRequest request)
 		{
 			return new ContentItem
 			{

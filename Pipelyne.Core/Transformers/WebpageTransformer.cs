@@ -4,7 +4,7 @@
 	{
 		public string Name => "webpage";
 
-		public ContentItem Transform(string input)
+		public ContentItem Transform(string input, TransformationRequest request)
 		{
 			string html = @"
 <!DOCTYPE html>

@@ -4,7 +4,7 @@ namespace Pipelyne.Core
 	{
 		public string Name => "md-html";
 
-		public ContentItem Transform(string input)
+		public ContentItem Transform(string input, TransformationRequest request)
 		{
 			var html = CommonMark.CommonMarkConverter.Convert(input);
 

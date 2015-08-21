@@ -20,14 +20,6 @@
 			this.RegisterTransformer(new TableTransformer());
 		}
 
-		public IEnumerable<ITransformer> Transformers
-		{
-			get
-			{
-				return this.transformers.Select(t => t.Value).ToList();
-			}
-		}
-
 		public IEnumerable<IStore> Stores
 		{
 			get
@@ -36,14 +28,12 @@
 			}
 		}
 
-		private void RegisterTransformer(ITransformer transformer)
+		public IEnumerable<ITransformer> Transformers
 		{
-			this.transformers.Add(transformer.Name, transformer);
-		}
-
-		private void RegisterStore(IStore store)
-		{
-			this.stores.Add(store.Name, store);
+			get
+			{
+				return this.transformers.Select(t => t.Value).ToList();
+			}
 		}
 
 		public IStore GetStore(string name, bool throwExceptionIfNotFound)
@@ -69,7 +59,7 @@
 
 			if (store == null && throwExceptionIfNotFound)
 			{
-				var message = string.Format("Transform '{0}' was not found.", name);
+				var message = string.Format("Transformer '{0}' was not found.", name);
 				throw new ArgumentException(message);
 			}
 
@@ -102,6 +92,36 @@
 			}
 
 			return result;
+		}
+
+		/// <summary>
+		/// Processes request and returns final result.
+		/// </summary>
+		/// <param name="request"><see cref="TransformationRequest"/> instance.</param>
+		/// <returns><see cref="ContentItem"/> instance.</returns>
+		public ContentItem ProcessRequest(TransformationRequest request)
+		{
+			var store = this.GetStore(request.Source, true);
+			var content = store.GetContent(request.Id, true);
+
+			var transforms = this.GetTransforms(request.To);
+
+			foreach (var transform in transforms)
+			{
+				content = transform.Transform(content.Content, request);
+			}
+
+			return content;
+		}
+
+		private void RegisterStore(IStore store)
+		{
+			this.stores.Add(store.Name, store);
+		}
+
+		private void RegisterTransformer(ITransformer transformer)
+		{
+			this.transformers.Add(transformer.Name, transformer);
 		}
 	}
 }

@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TransformationRequest.cs" />
     <Compile Include="Transformers\CodeTransformer.cs" />
     <Compile Include="ContentItem.cs" />
     <Compile Include="Stores\DatabaseStore.cs" />
