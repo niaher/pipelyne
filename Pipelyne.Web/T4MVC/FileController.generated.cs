@@ -25,10 +25,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace Pipelyne.Web.Controllers
 {
-    public partial class HomeController
+    public partial class FileController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected HomeController(Dummy d) { }
+        protected FileController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -56,15 +56,21 @@ namespace Pipelyne.Web.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Get()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Get);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public HomeController Actions { get { return MVC.Home; } }
+        public FileController Actions { get { return MVC.File; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Home";
+        public readonly string Name = "File";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Home";
+        public const string NameConst = "File";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -72,16 +78,26 @@ namespace Pipelyne.Web.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Index = "Index";
+            public readonly string Get = "Get";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Index = "Index";
+            public const string Get = "Get";
         }
 
 
+        static readonly ActionParamsClass_Get s_params_Get = new ActionParamsClass_Get();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Get GetParams { get { return s_params_Get; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Get
+        {
+            public readonly string source = "source";
+            public readonly string id = "id";
+            public readonly string to = "to";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -92,27 +108,26 @@ namespace Pipelyne.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Admin = "Admin";
-                public readonly string Index = "Index";
             }
-            public readonly string Admin = "~/Views/Home/Admin.cshtml";
-            public readonly string Index = "~/Views/Home/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_HomeController : Pipelyne.Web.Controllers.HomeController
+    public partial class T4MVC_FileController : Pipelyne.Web.Controllers.FileController
     {
-        public T4MVC_HomeController() : base(Dummy.Instance) { }
+        public T4MVC_FileController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void GetOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string source, string id, string to);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index()
+        public override System.Web.Mvc.ActionResult Get(string source, string id, string to)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            IndexOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Get);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "source", source);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "to", to);
+            GetOverride(callInfo, source, id, to);
             return callInfo;
         }
 

@@ -11,8 +11,8 @@ namespace Pipelyne.Core
 			var uri = new Uri(id);
 			var request = WebRequest.Create(uri);
 			request.UseDefaultCredentials = true;
-			
-			var response = request.GetResponse();
+
+			var response = this.GetResponse(id, request);
 			
 			var result = new ContentItem { ContentType = response.ContentType };
 
@@ -37,12 +37,18 @@ namespace Pipelyne.Core
 			return result;
 		}
 
-		public string Name
+		private WebResponse GetResponse(string id, WebRequest request)
 		{
-			get
+			try
 			{
-				return "url";
+				return request.GetResponse();
+			}
+			catch (Exception)
+			{
+				throw new StoreItemNotFoundException(this.Name, id);
 			}
 		}
+
+		public string Name => "url";
 	}
 }

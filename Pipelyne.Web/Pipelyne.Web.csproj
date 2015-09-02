@@ -21,6 +21,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -148,8 +149,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="T4MVCExtensions">
-      <HintPath>..\packages\T4MVCExtensions.3.9.2\lib\net40\T4MVCExtensions.dll</HintPath>
+    <Reference Include="T4MVCExtensions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\T4MVCExtensions.3.15.4\lib\net40\T4MVCExtensions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Unity.Mvc5">
       <HintPath>..\packages\Unity.Mvc5.1.1\lib\net45\Unity.Mvc5.dll</HintPath>
@@ -169,14 +171,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="T4MVC\T4MVC.tt.hooks.t4" />
+    <Content Include="Docs\intro.md" />
     <None Include="T4MVC\T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
-    <Content Include="Views\Home\Admin.cshtml" />
+    <None Include="T4MVC\T4MVC.tt.settings.xml" />
     <Content Include="Views\Error\Unauthorized.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
+    <None Include="T4MVC\T4MVC.tt.hooks.t4" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -286,7 +289,6 @@
     <Content Include="Styles\Bootstrap\less\theme.css.map">
       <DependentUpon>theme.css</DependentUpon>
     </Content>
-    <None Include="T4MVC\T4MVC.tt.settings.xml" />
     <Content Include="Global.asax" />
     <Content Include="Styles\FontAwesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Web.config" />
@@ -304,18 +306,17 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Logic\MyControllerFactory.cs" />
-    <Compile Include="Logic\View\WebViewPage.cs" />
-    <Compile Include="Logic\View\IViewBagFactory.cs" />
-    <Compile Include="Logic\View\MyWebViewPage.cs" />
-    <Compile Include="Models\LayoutDetails.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Logic\Pipe.cs" />
     <Compile Include="T4MVC\ErrorController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC\FileController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="T4MVC\HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -323,6 +324,12 @@
     <Compile Include="T4MVC\LayoutController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Logic\MyControllerFactory.cs" />
+    <Compile Include="Logic\View\WebViewPage.cs" />
+    <Compile Include="Logic\View\IViewBagFactory.cs" />
+    <Compile Include="Logic\View\MyWebViewPage.cs" />
+    <Compile Include="Models\LayoutDetails.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4MVC\T4MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -344,6 +351,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\Api\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
