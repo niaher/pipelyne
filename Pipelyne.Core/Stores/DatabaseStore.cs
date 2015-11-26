@@ -106,11 +106,15 @@
 		{
 			public DatabaseQuery(string query)
 			{
+				// Sample queries:
+				//   mydb/user:data
+				//   mydb/table/user:data
+
 				var parts = query.Split(new[] { "/" }, StringSplitOptions.RemoveEmptyEntries);
 
 				this.ConnectionStringName = parts[0];
-				this.Collection = ItemCollection.TryParse(parts.TryGet(1));
-				this.Item = parts.TryGet(2)?.Split(':')[0];
+				this.Collection = ItemCollection.TryParse(parts.Length > 2 ? parts.TryGet(1) : "table");
+				this.Item = parts.TryGet(parts.Length > 2 ? 2 : 1)?.Split(':')[0];
 				this.RequestType = query.Contains(":data") ? RequestType.Data : RequestType.Metadata;
 			}
 

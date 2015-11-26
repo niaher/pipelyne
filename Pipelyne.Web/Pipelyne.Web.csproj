@@ -171,12 +171,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="Docs\intro.md" />
+    <None Include="compilerconfig.json" />
+    <Content Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </Content>
+    <None Include="Docs\intro.md" />
+    <None Include="Properties\PublishProfiles\localhost.pubxml" />
     <None Include="T4MVC\T4MVC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
     <None Include="T4MVC\T4MVC.tt.settings.xml" />
+    <Content Include="Styles\Bootstrap\less\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\Bootstrap\less\theme.min.css">
+      <DependentUpon>theme.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\Main.min.css">
+      <DependentUpon>Main.css</DependentUpon>
+    </Content>
     <Content Include="Views\Error\Unauthorized.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <None Include="T4MVC\T4MVC.tt.hooks.t4" />
@@ -280,18 +294,11 @@
       <DependentUpon>Main.less</DependentUpon>
     </Content>
     <Content Include="Styles\Main.less" />
-    <Content Include="Styles\Main.css.map">
-      <DependentUpon>Main.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\Bootstrap\less\bootstrap.css.map">
-      <DependentUpon>bootstrap.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\Bootstrap\less\theme.css.map">
-      <DependentUpon>theme.css</DependentUpon>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="Styles\FontAwesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Layout\Breadcrumbs.cshtml" />
@@ -351,7 +358,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\Api\" />
-    <Folder Include="Views\File\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
