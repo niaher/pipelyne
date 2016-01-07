@@ -10,7 +10,9 @@
 	// To build package for a specific project you can run `Build-Packages -Project "MyProject1"`.
 	// All projects containing the specified string will be built.
 	"projects": [
-		"Pipelyne.Core"],
+		"Pipelyne.Core",
+		"Pipelyne.Controllers"
+	],
 
 	// The target to which you want to push. It can be either a remote server,
 	// such as nuget.org or a UNC path (e.g. - "\\remote-computer\c$\Nugets").
