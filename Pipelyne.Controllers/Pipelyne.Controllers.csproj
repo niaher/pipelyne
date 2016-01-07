@@ -64,6 +64,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Pipelyne.Controllers.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pipelyne.Core\Pipelyne.Core.csproj">
