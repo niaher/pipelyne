@@ -1,5 +1,6 @@
 ﻿namespace Pipelyne.Controllers
 {
+	using System.Collections.Generic;
 	using System.Net.Http;
 	using System.Text;
 	using System.Web.Http;
@@ -24,6 +25,22 @@
 			{
 				Content = new StringContent(content.Content, Encoding.UTF8, content.ContentType)
 			});
+		}
+
+		[HttpGet]
+		public PipelyneMetadata Metadata()
+		{
+			return new PipelyneMetadata
+			{
+				Stores = this.pipelyne.Stores,
+				Transformers = this.pipelyne.Transformers
+			};
+		}
+
+		public class PipelyneMetadata
+		{
+			public IEnumerable<IStore> Stores { get; set; }
+			public IEnumerable<ITransformer> Transformers { get; set; }
 		}
 	}
 }
