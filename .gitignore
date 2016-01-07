@@ -193,3 +193,5 @@ ModelManifest.xml
 *.css.map
 *.js.map
 .vs/
+
+NugetMaker.Local.json
