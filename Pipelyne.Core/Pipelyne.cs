@@ -19,7 +19,7 @@
 			this.RegisterTransformer(new CodeTransformer());
 			this.RegisterTransformer(new TableTransformer());
 		}
-
+		
 		public IEnumerable<IStore> Stores
 		{
 			get
@@ -114,12 +114,20 @@
 			return content;
 		}
 
-		private void RegisterStore(IStore store)
+		/// <summary>
+		/// Register new <see cref="IStore"/>.
+		/// </summary>
+		/// <param name="store"><see cref="IStore"/> instance.</param>
+		public void RegisterStore(IStore store)
 		{
 			this.stores.Add(store.Name, store);
 		}
 
-		private void RegisterTransformer(ITransformer transformer)
+		/// <summary>
+		/// Register new <see cref="ITransformer"/>.
+		/// </summary>
+		/// <param name="transformer"><see cref="ITransformer"/> instance.</param>
+		public void RegisterTransformer(ITransformer transformer)
 		{
 			this.transformers.Add(transformer.Name, transformer);
 		}
