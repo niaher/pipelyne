@@ -18,5 +18,5 @@
 	// A "single-backward-slash" (\) is treated as an escape character. So for example,
 	// if you want to push to "\\remote-computer\c$\Nugets", your target should be set to
 	// "\\\\remote-computer\\c$\\Nugets".
-	"target": "http://www.nuget.org/"
+	"target": "https://www.nuget.org/"
 }
