@@ -347,18 +347,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pipelyne.Controllers\Pipelyne.Controllers.csproj">
-      <Project>{0cb709a2-358a-4933-9779-1d18d8eb4826}</Project>
-      <Name>Pipelyne.Controllers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Pipelyne.Core\Pipelyne.Core.csproj">
       <Project>{0660171e-c331-4563-94eb-87cdb6c05833}</Project>
       <Name>Pipelyne.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\Api\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
