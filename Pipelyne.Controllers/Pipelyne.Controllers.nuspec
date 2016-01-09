@@ -8,4 +8,7 @@
 		<owners>$author$</owners>
 		<description>$description$</description>
 	</metadata>
+	<files>
+		<file src="NuGet/ReadMe.txt" target="ReadMe.txt" />
+	</files>
 </package>
