@@ -45,5 +45,10 @@ namespace Pipelyne.Core.Parsing
 		{
 			return (T)Enum.Parse(typeof(T), this.Value, true);
 		}
+
+		public Uri AsUri()
+		{
+			return new Uri(this.Value);
+		}
 	}
 }

@@ -13,17 +13,15 @@
 		[TestMethod]
 		public void ParsingWorks()
 		{
-			var a = new Parameter("a");
-			var b = new Parameter("b");
-			var c = new Parameter("c");
-			var signature = new Signature(a, b, c);
-			var invocation = signature.CreateInvocation("value1,123,Sunday");
+			var a = new Argument("value1", new Parameter("a"));
+			var b = new Argument("123", new Parameter("b"));
+			var c = new Argument("Sunday", new Parameter("c"));
 
 			this
 				.Given(s => Task.FromResult(0))
-				.Then(s => invocation.Arguments["a"].Value.Should().Be("value1", null))
-				.Then(s => invocation.Arguments["b"].AsInt32().Should().Be(123, null))
-				.Then(s => invocation.Arguments["c"].AsEnum<DayOfWeek>().Should().Be(DayOfWeek.Sunday, null))
+				.Then(s => a.Value.Should().Be("value1", null))
+				.Then(s => b.AsInt32().Should().Be(123, null))
+				.Then(s => c.AsEnum<DayOfWeek>().Should().Be(DayOfWeek.Sunday, null))
 				.BDDfy();
 		}
 	}

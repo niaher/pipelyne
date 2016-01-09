@@ -92,10 +92,8 @@ namespace Pipelyne.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Admin = "Admin";
                 public readonly string Index = "Index";
             }
-            public readonly string Admin = "~/Views/Home/Admin.cshtml";
             public readonly string Index = "~/Views/Home/Index.cshtml";
         }
     }

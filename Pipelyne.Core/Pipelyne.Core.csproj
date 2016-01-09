@@ -52,12 +52,11 @@
     <Compile Include="Parsing\Argument.cs" />
     <Compile Include="Parsing\Invocation.cs" />
     <Compile Include="Parsing\Parameter.cs" />
-    <Compile Include="Parsing\Signature.cs" />
     <Compile Include="TransformationRequest.cs" />
     <Compile Include="Transformers\CodeTransformer.cs" />
     <Compile Include="ContentItem.cs" />
     <Compile Include="Stores\DatabaseStore.cs" />
-    <Compile Include="Stores\IStore.cs" />
+    <Compile Include="Stores\Store.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Transformers\ITransformer.cs" />
     <Compile Include="Pipelyne.cs" />

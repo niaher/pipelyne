@@ -1,24 +1,26 @@
 namespace Pipelyne.Core
 {
 	using System;
+	using System.Collections.Generic;
 	using System.IO;
 	using System.Net;
 	using global::Pipelyne.Core.Parsing;
 
-	public class UrlStore : IStore
+	public class UrlStore : Store
 	{
-		private static readonly Signature SignatureInstance = new Signature(new Parameter("url"));
+		private static readonly IReadOnlyList<Parameter> ParameterList = new List<Parameter> { new Parameter("url") };
 
-		public string Name => "url";
-		public Signature Signature => SignatureInstance;
+		public override string Name => "url";
 
-		public ContentItem GetContent(string id, bool throwExceptionIfNotFound)
+		public override IReadOnlyList<Parameter> Parameters => ParameterList;
+
+		public override ContentItem GetContent(Invocation invocation, bool throwExceptionIfNotFound)
 		{
-			var uri = new Uri(id);
+			var uri = invocation.Arguments["url"].AsUri();
 			var request = WebRequest.Create(uri);
 			request.UseDefaultCredentials = true;
 
-			var response = this.GetResponse(id, request);
+			var response = this.GetResponse(uri.AbsoluteUri, request);
 
 			var result = new ContentItem { ContentType = response.ContentType };
 
@@ -28,7 +30,7 @@ namespace Pipelyne.Core
 				{
 					if (throwExceptionIfNotFound)
 					{
-						throw new StoreItemNotFoundException(this.Name, id);
+						throw new StoreItemNotFoundException(this.Name, uri.AbsoluteUri);
 					}
 
 					return null;

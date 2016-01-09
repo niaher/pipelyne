@@ -39,7 +39,7 @@
 
 		public class PipelyneMetadata
 		{
-			public IEnumerable<IStore> Stores { get; set; }
+			public IEnumerable<Store> Stores { get; set; }
 			public IEnumerable<ITransformer> Transformers { get; set; }
 		}
 	}

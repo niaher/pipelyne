@@ -28,7 +28,6 @@ using T4MVC;
 public static partial class MVC
 {
     public static Pipelyne.Web.Controllers.ErrorController Error = new Pipelyne.Web.Controllers.T4MVC_ErrorController();
-    public static Pipelyne.Web.Controllers.FileController File = new Pipelyne.Web.Controllers.T4MVC_FileController();
     public static Pipelyne.Web.Controllers.HomeController Home = new Pipelyne.Web.Controllers.T4MVC_HomeController();
     public static T4MVC.LayoutController Layout = new T4MVC.LayoutController();
 }

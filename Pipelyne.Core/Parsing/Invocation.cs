@@ -4,7 +4,7 @@
 	using System.Linq;
 
 	/// <summary>
-	/// Represents invocation of a <see cref="Signature"/>.
+	/// Represents invocation of a <see cref="Store"/>.
 	/// </summary>
 	public class Invocation
 	{

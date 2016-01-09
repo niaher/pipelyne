@@ -6,7 +6,7 @@
 
 	public class Pipelyne
 	{
-		private readonly Dictionary<string, IStore> stores = new Dictionary<string, IStore>();
+		private readonly Dictionary<string, Store> stores = new Dictionary<string, Store>();
 		private readonly Dictionary<string, ITransformer> transformers = new Dictionary<string, ITransformer>();
 
 		public Pipelyne()
@@ -20,7 +20,7 @@
 			this.RegisterTransformer(new TableTransformer());
 		}
 		
-		public IEnumerable<IStore> Stores
+		public IEnumerable<Store> Stores
 		{
 			get
 			{
@@ -36,8 +36,13 @@
 			}
 		}
 
-		public IStore GetStore(string name, bool throwExceptionIfNotFound)
+		public Store GetStore(string name, bool throwExceptionIfNotFound)
 		{
+			if (name == null)
+			{
+				throw new ArgumentNullException(nameof(name), "Name of store hasn't been supplied.");
+			}
+
 			string normalizedName = name.ToLower();
 
 			var store = this.stores[normalizedName];
@@ -115,10 +120,10 @@
 		}
 
 		/// <summary>
-		/// Register new <see cref="IStore"/>.
+		/// Register new <see cref="Store"/>.
 		/// </summary>
-		/// <param name="store"><see cref="IStore"/> instance.</param>
-		public void RegisterStore(IStore store)
+		/// <param name="store"><see cref="Store"/> instance.</param>
+		public void RegisterStore(Store store)
 		{
 			this.stores.Add(store.Name, store);
 		}

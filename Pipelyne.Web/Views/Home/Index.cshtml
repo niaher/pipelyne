@@ -15,7 +15,7 @@
 
 <h3>URL format</h3>
 
-~/api/file/get?
+~/pipe?
 <strong>source</strong>=<span class="label label-info">store-of-your-choosing</span>&
 <strong>id</strong>=<span class="label label-info">item-inside-the-store</span>&
 <strong>to</strong>=<span class="label label-info">comma-delimitted-list-of-transformers</span>
@@ -23,23 +23,23 @@
 <h3>Examples</h3>
 <ul>
 	<li>
-		<a href="@Url.Content("~/api/file/get?source=url&id=https://raw.githubusercontent.com/Knagis/CommonMark.NET/master/README.md&to=md-html,webpage")">
-			~/api/file/get?source=url&id=https://raw.githubusercontent.com/Knagis/CommonMark.NET/master/README.md&to=md-html,webpage
+		<a href="@Url.Content("~/pipe?source=url&id=https://raw.githubusercontent.com/Knagis/CommonMark.NET/master/README.md&to=md-html,webpage")">
+			~/pipe?source=url&id=https://raw.githubusercontent.com/Knagis/CommonMark.NET/master/README.md&to=md-html,webpage
 		</a>
 	</li>
 	<li>
-		<a href="@Url.Content("~/api/file/get?source=url&id=https://raw.githubusercontent.com/Knagis/CommonMark.NET/master/README.md&to=text")">
-			~/api/file/get?source=url&id=https://raw.githubusercontent.com/Knagis/CommonMark.NET/master/README.md&to=text
+		<a href="@Url.Content("~/pipe?source=url&id=https://raw.githubusercontent.com/Knagis/CommonMark.NET/master/README.md&to=text")">
+			~/pipe?source=url&id=https://raw.githubusercontent.com/Knagis/CommonMark.NET/master/README.md&to=text
 		</a>
 	</li>
 	<li>
-		<a href="@Url.Content("~/api/file/get?source=db&id=mydb/user:data&to=code,webpage")">
-			~/api/file/get?source=db&id=mydb/user:data&to=code,webpage
+		<a href="@Url.Content("~/pipe?source=db&id=mydb,tables,user,data&to=code,webpage")">
+			~/pipe?source=db&id=mydb,tables,user,data&to=code,webpage
 		</a>
 	</li>
 	<li>
-		<a href="@Url.Content("~/api/file/get?source=db&id=mydb/country:data&to=table,webpage")">
-			~/api/file/get?source=db&id=mydb/country:data&to=table,webpage
+		<a href="@Url.Content("~/pipe?source=db&id=mydb,tables,user,metadata&to=table,webpage")">
+			~/pipe?source=db&id=mydb,tables,user,metadata&to=table,webpage
 		</a>
 	</li>
 </ul>

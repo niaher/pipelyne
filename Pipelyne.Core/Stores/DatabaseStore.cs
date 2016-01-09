@@ -1,6 +1,7 @@
 ﻿namespace Pipelyne.Core
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Configuration;
 	using System.Data;
 	using System.Data.Common;
@@ -8,7 +9,11 @@
 	using global::Pipelyne.Core.Parsing;
 	using Newtonsoft.Json;
 
-	public class DatabaseStore : IStore
+	// Sample queries:
+	//   mydb/user:data
+	//   mydb/table/user:data
+
+	public class DatabaseStore : Store
 	{
 		private enum RequestType
 		{
@@ -16,27 +21,37 @@
 			Data
 		}
 
-		public string Name => "db";
-		public Signature Signature => MySignature.Instance;
+		public override string Name => "db";
 
-		public ContentItem GetContent(string id, bool throwExceptionIfNotFound)
+		public override IReadOnlyList<Parameter> Parameters => new List<Parameter>
 		{
-			return new DatabaseQuery(id).Execute();
+			ParameterList.ConnectionStringName,
+			ParameterList.Collection,
+			ParameterList.Item,
+			ParameterList.Request
+		};
+
+		public override ContentItem GetContent(Invocation invocation, bool throwExceptionIfNotFound)
+		{
+			return new DatabaseQuery(invocation).Execute();
+		}
+
+		private static class ParameterList
+		{
+			public static readonly Parameter Collection = new Parameter("collection");
+			public static readonly Parameter ConnectionStringName = new Parameter("connectionStringName");
+			public static readonly Parameter Item = new Parameter("item");
+			public static readonly Parameter Request = new Parameter("requestType");
 		}
 
 		private class DatabaseQuery
 		{
-			public DatabaseQuery(string query)
+			public DatabaseQuery(Invocation invocation)
 			{
-				var invocation = MySignature.Instance.CreateInvocation(query);
-				// Sample queries:
-				//   mydb/user:data
-				//   mydb/table/user:data
-
-				this.ConnectionStringName = invocation.Arguments[MySignature.ConnectionStringName.Name].Value;
-				this.Collection = ItemCollection.TryParse(invocation.Arguments[MySignature.Collection.Name].Value);
-				this.Item = invocation.Arguments[MySignature.Item.Name].Value;
-				this.RequestType = invocation.Arguments[MySignature.Request.Name].AsEnum<RequestType>();
+				this.ConnectionStringName = invocation.Arguments[ParameterList.ConnectionStringName.Name].Value;
+				this.Collection = ItemCollection.TryParse(invocation.Arguments[ParameterList.Collection.Name].Value);
+				this.Item = invocation.Arguments[ParameterList.Item.Name].Value;
+				this.RequestType = invocation.Arguments[ParameterList.Request.Name].AsEnum<RequestType>();
 			}
 
 			private ItemCollection Collection { get; }
@@ -104,13 +119,10 @@
 				switch (normalizedCollectionName)
 				{
 					case "tables":
-					case "table":
 						return Table;
 					case "views":
-					case "view":
 						return View;
-					case "storedprocedures":
-					case "storedprocedure":
+					case "sprocs":
 						return StoredProcedure;
 					default:
 						throw new ArgumentOutOfRangeException(nameof(collectionName));
@@ -161,26 +173,6 @@
 
 					return data;
 				}
-			}
-		}
-
-		private class MySignature : Signature
-		{
-			public static readonly Parameter Collection = new Parameter("collection");
-			public static readonly Parameter ConnectionStringName = new Parameter("connectionStringName");
-			public static readonly Parameter Item = new Parameter("item");
-			public static readonly Parameter Request = new Parameter("requestType");
-
-			public static readonly MySignature Instance;
-
-			static MySignature()
-			{
-				Instance = new MySignature();
-			}
-
-			private MySignature()
-				: base(ConnectionStringName, Collection, Item, Request)
-			{
 			}
 		}
 	}
