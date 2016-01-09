@@ -7,11 +7,11 @@
 	using System.Web.Http.Results;
 	using Pipelyne.Core;
 
-	public class FileController : ApiController
+	public class PipelyneController : ApiController
 	{
 		private readonly Pipelyne pipelyne;
 
-		public FileController(Pipelyne pipelyne)
+		public PipelyneController(Pipelyne pipelyne)
 		{
 			this.pipelyne = pipelyne;
 		}
