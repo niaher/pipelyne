@@ -49,6 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Parsing\Argument.cs" />
+    <Compile Include="Parsing\Invocation.cs" />
+    <Compile Include="Parsing\Parameter.cs" />
+    <Compile Include="Parsing\Signature.cs" />
     <Compile Include="TransformationRequest.cs" />
     <Compile Include="Transformers\CodeTransformer.cs" />
     <Compile Include="ContentItem.cs" />
