@@ -1,8 +1,11 @@
 namespace Pipelyne.Core
 {
+	using global::Pipelyne.Core.Parsing;
+
 	public interface IStore
 	{
-		ContentItem GetContent(string id, bool throwExceptionIfNotFound);
 		string Name { get; }
+		Signature Signature { get; }
+		ContentItem GetContent(string id, bool throwExceptionIfNotFound);
 	}
 }

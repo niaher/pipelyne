@@ -3,9 +3,15 @@ namespace Pipelyne.Core
 	using System;
 	using System.IO;
 	using System.Net;
+	using global::Pipelyne.Core.Parsing;
 
 	public class UrlStore : IStore
 	{
+		private static readonly Signature SignatureInstance = new Signature(new Parameter("url"));
+
+		public string Name => "url";
+		public Signature Signature => SignatureInstance;
+
 		public ContentItem GetContent(string id, bool throwExceptionIfNotFound)
 		{
 			var uri = new Uri(id);
@@ -13,7 +19,7 @@ namespace Pipelyne.Core
 			request.UseDefaultCredentials = true;
 
 			var response = this.GetResponse(id, request);
-			
+
 			var result = new ContentItem { ContentType = response.ContentType };
 
 			using (var stream = response.GetResponseStream())
@@ -48,7 +54,5 @@ namespace Pipelyne.Core
 				throw new StoreItemNotFoundException(this.Name, id);
 			}
 		}
-
-		public string Name => "url";
 	}
 }
