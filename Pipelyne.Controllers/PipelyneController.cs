@@ -17,7 +17,7 @@
 		}
 
 		[HttpGet]
-		public ResponseMessageResult Get([FromUri]TransformationRequest request)
+		public ResponseMessageResult Get([FromUri]PipelyneRequest request)
 		{
 			ContentItem content = this.pipelyne.ProcessRequest(request);
 

@@ -4,7 +4,7 @@
 	{
 		public string Name => "webpage";
 
-		public ContentItem Transform(string input, TransformationRequest request)
+		public ContentItem Transform(TransformRequest request)
 		{
 			string html = @"
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css' rel='stylesheet'>
   </head>
   <body>
-    <div class='container' style='margin-top:25px; margin-bottom:25px'>" + input + @"</div>
+    <div class='container' style='margin-top:25px; margin-bottom:25px'>" + request.Input + @"</div>
   </body>
 </html>";
 			return new ContentItem(html, "text/html");

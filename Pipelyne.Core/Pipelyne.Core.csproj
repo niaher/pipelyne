@@ -50,15 +50,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Parsing\Argument.cs" />
-    <Compile Include="Parsing\Invocation.cs" />
     <Compile Include="Parsing\Parameter.cs" />
-    <Compile Include="TransformationRequest.cs" />
+    <Compile Include="Transform.cs" />
+    <Compile Include="TransformRequest.cs" />
+    <Compile Include="TransformQuery.cs" />
+    <Compile Include="PipelyneRequest.cs" />
     <Compile Include="Transformers\CodeTransformer.cs" />
     <Compile Include="ContentItem.cs" />
     <Compile Include="Stores\DatabaseStore.cs" />
-    <Compile Include="Stores\Store.cs" />
+    <Compile Include="Store.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Transformers\ITransformer.cs" />
+    <Compile Include="ITransformer.cs" />
     <Compile Include="Pipelyne.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Exceptions\StoreItemNotFoundException.cs" />

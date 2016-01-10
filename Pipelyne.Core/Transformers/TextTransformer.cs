@@ -4,11 +4,11 @@
 	{
 		public string Name => "text";
 
-		public ContentItem Transform(string input, TransformationRequest request)
+		public ContentItem Transform(TransformRequest request)
 		{
 			return new ContentItem
 			{
-				Content = input,
+				Content = request.Input,
 				ContentType = "text/plain"
 			};
 		}

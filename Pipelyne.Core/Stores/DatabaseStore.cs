@@ -18,6 +18,7 @@
 		private enum RequestType
 		{
 			Metadata,
+			// ReSharper disable once UnusedMember.Local
 			Data
 		}
 
@@ -31,7 +32,7 @@
 			ParameterList.Request
 		};
 
-		public override ContentItem GetContent(Invocation invocation, bool throwExceptionIfNotFound)
+		public override ContentItem GetContent(IReadOnlyDictionary<string, Argument> invocation, bool throwExceptionIfNotFound)
 		{
 			return new DatabaseQuery(invocation).Execute();
 		}
@@ -46,12 +47,12 @@
 
 		private class DatabaseQuery
 		{
-			public DatabaseQuery(Invocation invocation)
+			public DatabaseQuery(IReadOnlyDictionary<string, Argument> invocation)
 			{
-				this.ConnectionStringName = invocation.Arguments[ParameterList.ConnectionStringName.Name].Value;
-				this.Collection = ItemCollection.TryParse(invocation.Arguments[ParameterList.Collection.Name].Value);
-				this.Item = invocation.Arguments[ParameterList.Item.Name].Value;
-				this.RequestType = invocation.Arguments[ParameterList.Request.Name].AsEnum<RequestType>();
+				this.ConnectionStringName = invocation[ParameterList.ConnectionStringName.Name].Value;
+				this.Collection = ItemCollection.TryParse(invocation[ParameterList.Collection.Name].Value);
+				this.Item = invocation[ParameterList.Item.Name].Value;
+				this.RequestType = invocation[ParameterList.Request.Name].AsEnum<RequestType>();
 			}
 
 			private ItemCollection Collection { get; }

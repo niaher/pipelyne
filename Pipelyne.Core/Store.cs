@@ -1,7 +1,7 @@
 namespace Pipelyne.Core
 {
 	using System.Collections.Generic;
-	using System.IO.IsolatedStorage;
+	using System.Linq;
 	using global::Pipelyne.Core.Parsing;
 
 	public abstract class Store
@@ -13,13 +13,21 @@ namespace Pipelyne.Core
 		/// </summary>
 		public abstract IReadOnlyList<Parameter> Parameters { get; }
 
+		public abstract ContentItem GetContent(IReadOnlyDictionary<string, Argument> id, bool throwExceptionIfNotFound);
+
+		internal ContentItem GetContent(string id, bool throwExceptionIfNotFound)
+		{
+			var argumentDictionary = this.CreateInvocation(id).ToDictionary(t => t.Parameter.Name, t => t);
+			return this.GetContent(argumentDictionary, throwExceptionIfNotFound);
+		}
+
 		/// <summary>
-		/// Creates <see cref="Invocation"/> instance which represents invocation of
-		/// this signature.
+		/// Parses argument string into list of <see cref="Argument"/> objects, which
+		/// correspond to <see cref="Parameters"/> collection.
 		/// </summary>
 		/// <param name="arguments">Comma-separated list of arguments.</param>
-		/// <returns><see cref="Invocation"/> instance.</returns>
-		private Invocation CreateInvocation(string arguments)
+		/// <returns><see cref="IReadOnlyDictionary{TKey,TValue}"/> instance.</returns>
+		private IList<Argument> CreateInvocation(string arguments)
 		{
 			var args = arguments.Split(',');
 
@@ -34,15 +42,7 @@ namespace Pipelyne.Core
 				list.Add(a);
 			}
 
-			return new Invocation(list);
+			return list;
 		}
-
-		internal ContentItem GetContent(string id, bool throwExceptionIfNotFound)
-		{
-			var invocation = this.CreateInvocation(id);
-			return this.GetContent(invocation, throwExceptionIfNotFound);
-		}
-
-		public abstract ContentItem GetContent(Invocation id, bool throwExceptionIfNotFound);
 	}
 }

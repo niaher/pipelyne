@@ -4,7 +4,7 @@
 	{
 		public string Name => "table";
 
-		public ContentItem Transform(string input, TransformationRequest request)
+		public ContentItem Transform(TransformRequest request)
 		{
 			string html = @"
 <link href='//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css' rel='stylesheet' />
@@ -46,7 +46,7 @@ $(document).ready(function(){
 		}
 	}
 
-	var data = " + input + @";
+	var data = " + request.Input + @";
 	tableCreate(document.getElementById('mytable'), data);
 
 	$('#mytable').DataTable();

@@ -4,9 +4,9 @@ namespace Pipelyne.Core
 	{
 		public string Name => "code";
 
-		public ContentItem Transform(string input, TransformationRequest request)
+		public ContentItem Transform(TransformRequest request)
 		{
-			string html = "<pre>" + input + "</pre>";
+			string html = "<pre>" + request.Input + "</pre>";
 			return new ContentItem(html, "text/html");
 		}
 	}

@@ -19,7 +19,7 @@
 			this.RegisterTransformer(new CodeTransformer());
 			this.RegisterTransformer(new TableTransformer());
 		}
-		
+
 		public IEnumerable<Store> Stores
 		{
 			get
@@ -36,7 +36,7 @@
 			}
 		}
 
-		public Store GetStore(string name, bool throwExceptionIfNotFound)
+		private Store GetStore(string name, bool throwExceptionIfNotFound)
 		{
 			if (name == null)
 			{
@@ -56,44 +56,34 @@
 			return store;
 		}
 
-		public ITransformer GetTransform(string name, bool throwExceptionIfNotFound)
-		{
-			string normalizedName = name.ToLower();
-
-			var store = this.transformers[normalizedName];
-
-			if (store == null && throwExceptionIfNotFound)
-			{
-				var message = string.Format("Transformer '{0}' was not found.", name);
-				throw new ArgumentException(message);
-			}
-
-			return store;
-		}
-
 		/// <summary>
-		/// Gets list of <see cref="ITransformer"/> instances based on the comma-delimitted list of their names 
+		/// Gets list of <see cref="ITransformer"/> instances based on the comma-delimited list of their names 
 		/// (as specified in <see cref="ITransformer.Name"/>). If any of the transformers cannot be found,
 		/// then an exception is thrown.
 		/// </summary>
-		/// <param name="to">Comma-delimitted list of transformer names (i.e. - <see cref="ITransformer.Name"/>).</param>
+		/// <param name="to">Comma-delimited list of transformer names (i.e. - <see cref="ITransformer.Name"/>).</param>
 		/// <returns>List of <see cref="ITransformer"/> instances.</returns>
 		/// <exception cref="ArgumentException">Thrown if any of the transformers specified in the parameter cannot be found.</exception>
-		public IList<ITransformer> GetTransforms(string to)
+		private List<Transform> GetTransforms(string to)
 		{
 			if (string.IsNullOrWhiteSpace(to))
 			{
-				return new List<ITransformer>();
+				return new List<Transform>();
 			}
 
-			var names = to.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+			var names = to.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
 
-			var result = new List<ITransformer>(names.Length);
+			var result = new List<Transform>(names.Length);
 
 			foreach (var name in names)
 			{
-				var transform = this.GetTransform(name, true);
-				result.Add(transform);
+				var query = new TransformQuery(name);
+
+				var transform = this.GetTransform(query.TransformerName, true);
+
+				var invocation = new Transform(transform, query.Arguments);
+
+				result.Add(invocation);
 			}
 
 			return result;
@@ -102,9 +92,9 @@
 		/// <summary>
 		/// Processes request and returns final result.
 		/// </summary>
-		/// <param name="request"><see cref="TransformationRequest"/> instance.</param>
+		/// <param name="request"><see cref="PipelyneRequest"/> instance.</param>
 		/// <returns><see cref="ContentItem"/> instance.</returns>
-		public ContentItem ProcessRequest(TransformationRequest request)
+		public ContentItem ProcessRequest(PipelyneRequest request)
 		{
 			var store = this.GetStore(request.Source, true);
 			var content = store.GetContent(request.Id, true);
@@ -113,7 +103,7 @@
 
 			foreach (var transform in transforms)
 			{
-				content = transform.Transform(content.Content, request);
+				content = transform.Invoke(content.Content, request);
 			}
 
 			return content;
@@ -135,6 +125,21 @@
 		public void RegisterTransformer(ITransformer transformer)
 		{
 			this.transformers.Add(transformer.Name, transformer);
+		}
+
+		private ITransformer GetTransform(string transformerName, bool throwExceptionIfNotFound)
+		{
+			string normalizedName = transformerName.ToLower();
+			
+			var transformer = this.transformers[normalizedName];
+
+			if (transformer == null && throwExceptionIfNotFound)
+			{
+				var message = $"Transformer '{transformerName}' was not found.";
+				throw new ArgumentException(message);
+			}
+
+			return transformer;
 		}
 	}
 }

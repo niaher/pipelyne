@@ -3,6 +3,6 @@
 	public interface ITransformer
 	{
 		string Name { get; }
-		ContentItem Transform(string input, TransformationRequest request);
+		ContentItem Transform(TransformRequest request);
 	}
 }

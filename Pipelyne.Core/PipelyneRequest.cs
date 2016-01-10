@@ -1,6 +1,6 @@
 ﻿namespace Pipelyne.Core
 {
-	public class TransformationRequest
+	public class PipelyneRequest
 	{
 		public string Source { get; set; }
 		public string Id { get; set; }

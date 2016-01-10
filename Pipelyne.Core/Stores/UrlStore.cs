@@ -14,9 +14,9 @@ namespace Pipelyne.Core
 
 		public override IReadOnlyList<Parameter> Parameters => ParameterList;
 
-		public override ContentItem GetContent(Invocation invocation, bool throwExceptionIfNotFound)
+		public override ContentItem GetContent(IReadOnlyDictionary<string, Argument> invocation, bool throwExceptionIfNotFound)
 		{
-			var uri = invocation.Arguments["url"].AsUri();
+			var uri = invocation["url"].AsUri();
 			var request = WebRequest.Create(uri);
 			request.UseDefaultCredentials = true;
 
