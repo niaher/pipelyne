@@ -64,6 +64,7 @@
     <Compile Include="Pipelyne.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Exceptions\StoreItemNotFoundException.cs" />
+    <Compile Include="Transformers\JsonTransformer.cs" />
     <Compile Include="Transformers\MarkdownTransformer.cs" />
     <Compile Include="Transformers\TableTransformer.cs" />
     <Compile Include="Transformers\TextTransformer.cs" />

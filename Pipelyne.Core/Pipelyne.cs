@@ -18,6 +18,7 @@
 			this.RegisterTransformer(new WebpageTransformer());
 			this.RegisterTransformer(new CodeTransformer());
 			this.RegisterTransformer(new TableTransformer());
+			this.RegisterTransformer(new JsonTransformer());
 		}
 
 		public IEnumerable<Store> Stores
